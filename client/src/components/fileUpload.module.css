@@ -1,0 +1,67 @@
+.boxInput {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.boxFile {
+  display: none;
+}
+
+.uploadLabel {
+  padding: 1rem;
+  border: 1px dashed #1d3557;
+  border-radius: 0.5rem;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+
+.uploadLabel.reject {
+  border-color: #e63946;
+}
+
+.uploadLabel.accept {
+  border-color: #90a955;
+}
+
+.boxButton {
+  border: 2px solid #1d3557;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: inherit;
+  color: #1d3557;
+  cursor: pointer;
+}
+
+.boxButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.errors {
+  font-size: small;
+  text-align: center;
+  color: #e63946;
+}
+
+.loader {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #1d3557;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

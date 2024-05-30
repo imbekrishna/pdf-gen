@@ -3,14 +3,18 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "prebuild": "rm -rf dist",
+    "build": "cd client && npm run build",
+    "postbuild": "mv client/dist ./",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-winston": "^4.2.0",

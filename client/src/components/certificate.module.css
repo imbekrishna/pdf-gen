@@ -1,0 +1,61 @@
+.certContainer {
+  max-width: 700px;
+  font-family: "ABeeZee", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #383c57;
+  box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.1);
+}
+
+.certBody {
+  padding-inline: 3.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.certHeader {
+  width: 100%;
+  height: auto;
+}
+
+.certTitle {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  margin-block: 1.8rem 1rem;
+  font-size: 3.9081rem;
+  line-height: 75%;
+}
+
+.certTitle :last-child {
+  color: #e2c493;
+  font-size: 1.5625rem;
+}
+
+.certRecepient {
+  font-family: "Scope One", serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-block: 1.5rem;
+  font-size: 3.125rem;
+  border-bottom: 1px solid #383c57;
+  max-width: 60%;
+  outline: none;
+}
+
+.certContent {
+  max-width: 520px;
+}
+
+.certFooter {
+  margin-block: 2rem;
+  border-bottom: 1px solid #383c57;
+  max-width: 100px;
+  padding-bottom: 2rem;
+}
+
+@media screen and (max-width: 400px) {
+  .certContainer {
+    zoom: 0.5;
+    -moz-transform: scale(0.5);
+  }
+}
