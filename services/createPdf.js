@@ -1,10 +1,9 @@
-import PDFDocument from "pdfkit";
-import path from "path";
-import { fileURLToPath } from "url";
+const PDFDocument = require("pdfkit");
+// const path = require("path");
+const { getBasepathTo } = require("../utils/helpers");
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const basePath = path.resolve(__dirname, "..", "assets");
+const basePath = getBasepathTo("assets");
+// const basePath = path.resolve(__dirname, "..", "assets");
 
 function jumpLine(doc, lines) {
   for (let index = 0; index < lines; index++) {
@@ -131,5 +130,4 @@ function createPage(doc, name, percentage, grade) {
     });
 }
 
-export default createPdf;
-export { createPage };
+module.exports = { createPdf, createPage };

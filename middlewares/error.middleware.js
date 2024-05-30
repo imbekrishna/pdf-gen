@@ -1,10 +1,11 @@
+const logger = require("../utils/logger");
+
 /**
  * Global error handler
  * @type {ErrorhandlerFunction}
  */
 const errorHandler = (error, request, response, next) => {
-  // logger.error(error.message);
-  console.log(error.message);
+  logger.error(error.message);
 
   if (error.name === "CastError") {
     return response.status(400).send({ error: "malformatted id" });
@@ -18,4 +19,4 @@ const errorHandler = (error, request, response, next) => {
     .json({ message: "Something went wrong. Please try again" });
 };
 
-export { errorHandler };
+module.exports = { errorHandler };

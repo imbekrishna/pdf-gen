@@ -1,11 +1,14 @@
-import { Router } from "express";
-import multer from "multer";
-import path from "path";
-import {
+const { Router } = require("express");
+const multer = require("multer");
+const path = require("path");
+const {
   generatePdf,
   uploadController,
-} from "../controllers/pdf.controller.js";
-import { fileInPath, validFilename } from "../middlewares/file.middleware.js";
+} = require("../controllers/pdf.controller.js");
+const {
+  fileInPath,
+  validFilename,
+} = require("../middlewares/file.middleware.js");
 
 const pdfRouter = Router();
 
@@ -46,4 +49,4 @@ const upload = multer({
 pdfRouter.post("/upload", upload.single("file"), fileInPath, uploadController);
 pdfRouter.post("/generate", validFilename, generatePdf);
 
-export default pdfRouter;
+module.exports = pdfRouter;

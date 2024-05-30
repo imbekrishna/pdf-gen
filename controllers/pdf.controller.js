@@ -1,8 +1,9 @@
-import csv from "fast-csv";
-import fs from "fs";
-import createPdf, { createPage } from "../services/createPdf.js";
-import path from "path";
-import { getBasepathTo } from "../utils/helpers.js";
+const csv = require("fast-csv");
+const fs = require("fs");
+const { createPdf, createPage } = require("../services/createPdf.js");
+const path = require("path");
+const { getBasepathTo } = require("../utils/helpers.js");
+const logger = require("../utils/logger.js");
 
 const basePath = getBasepathTo("uploads");
 
@@ -40,15 +41,14 @@ function generatePdf(req, res) {
       doc.addPage();
       createPage(doc, row.Name, row.Percentage, row.Grade);
     })
-    .on("end", (rowCount) => {
+    .on("end", () => {
       doc.end();
-      console.log(`Generated ${rowCount} certificates.`);
       fs.unlinkSync(path.join(basePath, filename));
     })
     .on("error", (error) => {
-      console.error(error);
+      logger.error(error);
       res.status(500).send(error.message);
     });
 }
 
-export { generatePdf, uploadController };
+module.exports = { generatePdf, uploadController };

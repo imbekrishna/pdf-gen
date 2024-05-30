@@ -1,6 +1,6 @@
-import path from "path";
-import fs from "fs";
-import { getBasepathTo } from "../utils/helpers.js";
+const path = require("path");
+const fs = require("fs");
+const { getBasepathTo } = require("../utils/helpers.js");
 
 const basepath = getBasepathTo("uploads");
 
@@ -31,4 +31,4 @@ function validFilename(req, res, next) {
   next();
 }
 
-export { fileInPath, validFilename };
+module.exports = { fileInPath, validFilename };
