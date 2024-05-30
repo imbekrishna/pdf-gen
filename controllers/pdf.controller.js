@@ -3,6 +3,7 @@ const XLSX = require("xlsx");
 const { createPdf, createPage } = require("../services/createPdf.js");
 const path = require("path");
 const { getBasepathTo } = require("../utils/helpers.js");
+const { validateRows } = require("../utils/helpers.js");
 
 const basePath = getBasepathTo("uploads");
 
@@ -36,6 +37,21 @@ function generatePdf(req, res) {
     const wb = XLSX.readFile(filePath);
     const sheet = wb.SheetNames[0];
     data = XLSX.utils.sheet_to_json(wb.Sheets[sheet]);
+  }
+
+  const errors = [];
+  data.forEach((row, index) => {
+    const rowErrors = validateRows(row, index);
+    if (rowErrors.length > 0) {
+      errors.push(...rowErrors);
+    }
+  });
+
+  if (errors.length > 0) {
+    fs.unlinkSync(filePath);
+    return res
+      .status(400)
+      .json({ message: "Validation failed for some fields", errors: errors });
   }
 
   const doc = createPdf();

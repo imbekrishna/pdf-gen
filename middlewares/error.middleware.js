@@ -11,7 +11,9 @@ const errorHandler = (error, request, response, next) => {
     return response.status(400).send({ error: "malformatted id" });
   } else if (error.name === "ValidationError") {
     return response.status(400).json({ error: error.message });
-  } else if (error.name === "InvalidFileType") {
+  } else if (error.name === "InvalidFileTypeError") {
+    return response.status(400).json({ message: error.message });
+  } else if (error.name === "FiliSizeError") {
     return response.status(400).json({ message: error.message });
   }
   return response

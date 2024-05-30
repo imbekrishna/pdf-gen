@@ -6,4 +6,12 @@ function getBasepathTo(directory) {
   return basePath;
 }
 
-module.exports = { getBasepathTo };
+function validateRows(row, index) {
+  const errors = [];
+  if (!row.Name) errors.push(`Row ${index + 1}: Name is missing.`);
+  if (!row.Percentage) errors.push(`Row ${index + 1}: Percentage is missing.`);
+  if (!row.Grade) errors.push(`Row ${index + 1}: Grade is missing.`);
+  return errors;
+}
+
+module.exports = { getBasepathTo, validateRows };
