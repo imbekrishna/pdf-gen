@@ -20,11 +20,14 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  const fileTypes = /csv/;
-  const extensionName = fileTypes.test(
+  const fileTypes =
+    ".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel".split(
+      ", "
+    );
+  const extensionName = fileTypes.includes(
     path.extname(file.originalname).toLowerCase()
   );
-  const mimetype = fileTypes.test(file.mimetype);
+  const mimetype = fileTypes.includes(file.mimetype);
 
   if (!mimetype && !extensionName) {
     return cb(
