@@ -20,6 +20,7 @@ main {
   align-items: center;
   font-family: sans-serif;
   color: #1d3557;
+  padding: 1rem;
 }
 
 button {
