@@ -15,7 +15,7 @@ const pdfRouter = Router();
 const storage = multer.diskStorage({
   destination: "uploads/",
   filename: function (req, file, cb) {
-    cb(null, `${file.originalname}-${Date.now()}.csv`);
+    cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
 

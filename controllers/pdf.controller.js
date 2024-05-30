@@ -1,9 +1,8 @@
-const csv = require("fast-csv");
 const fs = require("fs");
+const XLSX = require("xlsx");
 const { createPdf, createPage } = require("../services/createPdf.js");
 const path = require("path");
 const { getBasepathTo } = require("../utils/helpers.js");
-const logger = require("../utils/logger.js");
 
 const basePath = getBasepathTo("uploads");
 
@@ -25,6 +24,19 @@ function uploadController(req, res) {
  */
 function generatePdf(req, res) {
   const { filename } = req.body;
+  const filePath = path.join(basePath, filename);
+  const fileExt = path.extname(filePath).toLowerCase();
+
+  let data = [];
+  if (fileExt === ".csv") {
+    const wb = XLSX.readFile(filePath, { type: "binary", raw: true });
+    const sheet = wb.SheetNames[0];
+    data = XLSX.utils.sheet_to_json(wb.Sheets[sheet]);
+  } else {
+    const wb = XLSX.readFile(filePath);
+    const sheet = wb.SheetNames[0];
+    data = XLSX.utils.sheet_to_json(wb.Sheets[sheet]);
+  }
 
   const doc = createPdf();
   res.setHeader(
@@ -35,20 +47,13 @@ function generatePdf(req, res) {
 
   doc.pipe(res);
 
-  fs.createReadStream(path.join(basePath, filename))
-    .pipe(csv.parse({ headers: true }))
-    .on("data", (row) => {
-      doc.addPage();
-      createPage(doc, row.Name, row.Percentage, row.Grade);
-    })
-    .on("end", () => {
-      doc.end();
-      fs.unlinkSync(path.join(basePath, filename));
-    })
-    .on("error", (error) => {
-      logger.error(error);
-      res.status(500).send(error.message);
-    });
+  data.forEach((row) => {
+    doc.addPage();
+    createPage(doc, row.Name, row.Percentage, row.Grade);
+  });
+
+  doc.end();
+  fs.unlinkSync(filePath);
 }
 
 module.exports = { generatePdf, uploadController };
