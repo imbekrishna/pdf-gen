@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import styles from "./fileUpload.module.css";
 
-const baseUrl = "http://localhost:3001/pdf";
+const baseUrl = "http://localhost:8080/pdf";
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
