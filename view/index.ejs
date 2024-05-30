@@ -1,0 +1,19 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Upload CSV</title>
+  </head>
+  <body>
+    <form
+      ref="uploadForm"
+      id="uploadForm"
+      action="/pdf/generate"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input type="file" name="file" accept=".csv" required />
+      <input type="submit" value="Upload" />
+    </form>
+  </body>
+</html>
