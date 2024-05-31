@@ -10,7 +10,7 @@ getBasepathTo("dist");
 const app = express();
 app.use(
   cors({
-    origin: "*",
+    origin: ["*", "http://localhost:5173"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
     preflightContinue: false,
     optionsSuccessStatus: 204,
