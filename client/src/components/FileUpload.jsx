@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import styles from "./fileUpload.module.css";
 
-const baseUrl = "http://localhost:5000/pdf";
+const baseUrl = import.meta.env.VITE_PROXY_API;
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
@@ -35,7 +35,7 @@ const FileUpload = () => {
       formData.append("file", file);
 
       try {
-        const result = await axios.post(`${baseUrl}/upload`, formData);
+        const result = await axios.post(`${baseUrl}/pdf/upload`, formData);
         const data = result.data;
         setUploadedFile(data.filename);
         setErrors(null);
@@ -52,7 +52,7 @@ const FileUpload = () => {
     setLoading(true);
     try {
       const result = await axios.post(
-        `${baseUrl}/generate`,
+        `${baseUrl}/pdf/generate`,
         {
           filename: uploadedFile,
         },
