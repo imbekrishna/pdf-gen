@@ -33,6 +33,7 @@ This server application allows users to upload CSV or Excel files, processes the
    cd client
    npm install
    ```
+   Ensure to update environment variables for client. For more info refer [Client Readme](./client/README.md)
 3. Install the server dependencies
    ```bash
    cd ..

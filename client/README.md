@@ -38,4 +38,4 @@ This client application provides a user interface for uploading CSV or Excel fil
    ```
    Goto `http://localhost:5173` to access the app.
 
-   Ensure the server is runnning on port 5000 or change the port accordingly.
+   Ensure to update relevant environment variables as shown in `.env.example`. Create relevant files `.env.development` and `.env.production` as needed. For more information visit [Vite Documentation](https://vitejs.dev/guide/env-and-mode)
