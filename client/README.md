@@ -38,4 +38,4 @@ This client application provides a user interface for uploading CSV or Excel fil
    ```
    Goto `http://localhost:5173` to access the app.
 
-   Ensure the server is runnning on port 8080 or change the port accordingly.
+   Ensure the server is runnning on port 5000 or change the port accordingly.
